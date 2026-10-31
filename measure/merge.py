@@ -1,12 +1,5 @@
 #!/usr/bin/env python3
-"""Assemble feed.json from measured non-browser entries + cited browser allowlist.
-
-Measured entries come from measure/measured.json (written by measure.mjs).
-Browser allowlist entries are CITED from North-web-dev/fingerprint-db — pulled
-from FPDB_PATH if set, else downloaded from the repo's raw URL. Browser JA4s are
-referenced, not re-measured. Nothing is fabricated: entries with no valid JA4
-are dropped.
-"""
+"""Assemble feed.json: measured non-browser entries + cited fingerprint-db browsers."""
 from __future__ import annotations
 
 import json

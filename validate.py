@@ -1,16 +1,5 @@
 #!/usr/bin/env python3
-"""Validate feed.json against schema.json plus feed-specific invariants.
-
-Run locally or in CI:
-
-    python3 validate.py
-
-Exits non-zero (and prints what is wrong) if the feed is invalid, so it is
-safe to use as a required PR check. Checks: JSON Schema, JA4 format on every
-entry, required provenance, browser==allow / non-browser consistency, and that
-no JA4 is both allow (browser) and non-browser (a measured client colliding
-with the browser allowlist would be a real alarm).
-"""
+"""Validate feed.json against schema.json plus feed-specific invariants."""
 from __future__ import annotations
 
 import json

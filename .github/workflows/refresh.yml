@@ -36,6 +36,8 @@ jobs:
 
       - name: Measure non-browser clients (real handshakes)
         working-directory: measure
+        env:
+          REFLECTOR_URL: https://tls.peet.ws/api/all
         run: node measure.mjs
 
       - name: Merge measured + cited browser allowlist into feed.json

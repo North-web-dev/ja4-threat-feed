@@ -31,12 +31,19 @@ records those JA4s with provenance so you can act on them.
 Every entry carries a `provenance.method`. There are exactly two, and nothing
 else is invented:
 
-- **`measured`** — we actually ran the client against our live reflector
-  (`https://fp.shshbshsnang.shop/api/all`) and recorded the JA4 / JA4H /
-  Akamai-h2 the reflector read back off the wire, plus the tool name, version
-  and date. See [`measure/`](measure/). These are the **non-browser** entries
-  (curl, wget, Python `requests`/`httpx`/`urllib`/`aiohttp`, Go `net/http`,
-  Node `fetch`/undici, Java `HttpClient`). Verdict: `non-browser`.
+- **`measured`** — we actually ran the client against a live TLS reflector and
+  recorded the JA4 / Akamai-h2 the reflector read back off the wire, plus the
+  tool name, version and date. See [`measure/`](measure/). These are the
+  **non-browser** entries (curl, wget, Python `requests`/`httpx`/`urllib`/
+  `aiohttp`, Go `net/http`, Node `fetch`/undici, Java `HttpClient`). Verdict:
+  `non-browser`. The reflector is configurable via `REFLECTOR_URL` and defaults
+  to the public [`tls.peet.ws`](https://tls.peet.ws); set it to your own
+  reflector to measure against that instead. Two honest notes about the public
+  reflector: it does not expose a JA4H, so measured entries carry no `ja4h`
+  (the cited browser entries do); and it prints the no-ALPN JA4 without the
+  trailing `00`, so the harness pads it back to the FoxIO spec form that
+  ja4-guard also computes (the cipher/extension hashes are identical — same
+  handshake, canonical string).
 - **`cited`** — the **browser allowlist**, referenced (not re-measured) from
   [`fingerprint-db`](https://github.com/North-web-dev/fingerprint-db): its
   curated `browsers` plus its freshly-measured `live` engines. Category
@@ -68,12 +75,11 @@ These links are also machine-readable under `references` in `feed.json`.
   "entries": [
     {
       "ja4": "t13d3113h2_e8f1e7e78f70_ce5650b735ce",
-      "ja4h": "ge20nn020000_5594a17e7e7e_000000000000_000000000000",
       "akamai_h2": "3:100;4:33554432;2:0|33488897|0|m,p,s,a",
       "category": "tool",                 // browser | library | tool | scanner | unknown
       "label": "curl (HTTP/2 ALPN) 7.81.0",
       "verdict": "non-browser",           // allow | non-browser | suspicious
-      "source": "https://fp.shshbshsnang.shop/api/all",
+      "source": "https://tls.peet.ws/api/all",
       "provenance": { "method": "measured", "tool": "curl", "version": "7.81.0", "date": "2026-10-31" }
     }
   ]

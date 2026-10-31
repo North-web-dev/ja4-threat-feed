@@ -9,7 +9,7 @@ import { promisify } from 'node:util';
 const run = promisify(execFile);
 const HERE = dirname(fileURLToPath(import.meta.url));
 const C = join(HERE, 'clients');
-const URL = process.env.REFLECTOR || 'https://fp.shshbshsnang.shop/api/all';
+const URL = process.env.REFLECTOR_URL || process.env.REFLECTOR || 'https://tls.peet.ws/api/all';
 const OUT = process.argv[2] || join(HERE, 'measured.json');
 const DATE = new Date().toISOString().slice(0, 10);
 
@@ -30,6 +30,24 @@ const CLIENTS = [
 
 function sanitize(s) {
   return String(s == null ? '' : s).replace(/[\r\n]+/g, ' ').trim();
+}
+
+// Some reflectors omit the 2-char ALPN field when there is no ALPN; the FoxIO
+// spec (and ja4-guard) encode that as "00". Pad it so both forms agree.
+function canonJA4(ja4) {
+  const p = ja4.split('_');
+  if (p.length === 3 && p[0].length === 8) p[0] += '00';
+  return p.join('_');
+}
+
+function extract(d) {
+  const tls = d.tls || {};
+  const h2 = d.http2 || {};
+  return {
+    ja4: canonJA4(sanitize(d.ja4 || tls.ja4)),
+    ja4h: sanitize(d.ja4h || tls.ja4h || (d.http1 || {}).ja4h || h2.ja4h),
+    akamai: sanitize(d.akamai_h2 || h2.akamai_fingerprint),
+  };
 }
 
 async function has(bin) {
@@ -74,7 +92,7 @@ for (const c of CLIENTS) {
     console.error(`SKIP  ${c.id}: non-JSON response`);
     continue;
   }
-  const ja4 = sanitize(fp.ja4);
+  const { ja4, ja4h, akamai } = extract(fp);
   if (!JA4_RE.test(ja4)) {
     skipped.push({ id: c.id, reason: `no valid JA4 (${ja4 || 'empty'})` });
     console.error(`SKIP  ${c.id}: no valid JA4`);
@@ -89,10 +107,8 @@ for (const c of CLIENTS) {
     source: URL,
     provenance: { method: 'measured', tool: c.tool, version: ver, date: DATE },
   };
-  const ja4h = sanitize(fp.ja4h);
   if (ja4h && ja4h !== 'ge20nn000000_000000000000_000000000000_000000000000') e.ja4h = ja4h;
-  const ak = sanitize(fp.akamai_h2);
-  if (ak) e.akamai_h2 = ak;
+  if (akamai) e.akamai_h2 = akamai;
   entries.push(e);
   console.error(`OK    ${c.id}: ${ja4} (${ver})`);
 }

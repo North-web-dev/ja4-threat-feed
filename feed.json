@@ -142,15 +142,15 @@
       "akamai_h2": "3:100;4:4194304|10420225|0|m,s,p,a"
     },
     {
-      "ja4": "t13d1910h2_9dc949149365_97f8aa674fd9",
+      "ja4": "t13d1911h2_9dc949149365_e7c285222651",
       "category": "library",
-      "label": "Go net/http go1.18.1",
+      "label": "Go net/http go1.22.12",
       "verdict": "non-browser",
       "source": "https://tls.peet.ws/api/all",
       "provenance": {
         "method": "measured",
         "tool": "go-net-http",
-        "version": "go1.18.1",
+        "version": "go1.22.12",
         "date": "2026-10-31"
       },
       "akamai_h2": "2:0;4:4194304;6:10485760|1073741824|0|a,m,p,s"
@@ -158,59 +158,58 @@
     {
       "ja4": "t13d3113h2_1d947a95fc68_7e1102d2036b",
       "category": "library",
-      "label": "Java HttpClient 21.0.12.1",
+      "label": "Java HttpClient 25.0.5",
       "verdict": "non-browser",
       "source": "https://tls.peet.ws/api/all",
       "provenance": {
         "method": "measured",
         "tool": "java-httpclient",
-        "version": "21.0.12.1",
+        "version": "25.0.5",
         "date": "2026-10-31"
       },
       "akamai_h2": "1:16384;2:0;3:0;4:16777216;5:16384;6:393216|33488897|0|a,m,p,s"
     },
     {
-      "ja4": "t13d5212h1_b262b3658495_8e6e362c5eac",
+      "ja4": "t13d5911h1_a33745022dd6_1f22a2ca17c4",
       "category": "library",
-      "label": "Node fetch (undici) 8.9.0",
+      "label": "Node fetch (undici) 6.24.1",
       "verdict": "non-browser",
       "source": "https://tls.peet.ws/api/all",
       "provenance": {
         "method": "measured",
         "tool": "node-undici",
-        "version": "8.9.0",
+        "version": "6.24.1",
         "date": "2026-10-31"
-      },
-      "akamai_h2": "2:0;4:262144|458753|0|a,m,p,s"
+      }
     },
     {
-      "ja4": "t13d1813h1_85036bcba153_d339722ba4af",
+      "ja4": "t13d1714h1_ab0a1bf427ad_5ae85263eb3b",
       "category": "library",
-      "label": "python urllib 3.10.12",
+      "label": "python urllib 3.11.17",
       "verdict": "non-browser",
       "source": "https://tls.peet.ws/api/all",
       "provenance": {
         "method": "measured",
         "tool": "python-urllib",
-        "version": "3.10.12",
+        "version": "3.11.17",
         "date": "2026-10-31"
       }
     },
     {
-      "ja4": "t13d1812h1_85036bcba153_d41ae481755e",
+      "ja4": "t13d1713h1_ab0a1bf427ad_ecd0401ec68b",
       "category": "library",
-      "label": "python-aiohttp 3.13.5",
+      "label": "python-aiohttp 3.14.5",
       "verdict": "non-browser",
       "source": "https://tls.peet.ws/api/all",
       "provenance": {
         "method": "measured",
         "tool": "python-aiohttp",
-        "version": "3.13.5",
+        "version": "3.14.5",
         "date": "2026-10-31"
       }
     },
     {
-      "ja4": "t13d1812h1_85036bcba153_d41ae481755e",
+      "ja4": "t13d1713h1_ab0a1bf427ad_ecd0401ec68b",
       "category": "library",
       "label": "python-httpx 0.28.1",
       "verdict": "non-browser",
@@ -224,7 +223,7 @@
       "akamai_h2": "1:4096;2:0;4:65535;5:16384;3:100;6:65536|16777216|0|m,a,s,p"
     },
     {
-      "ja4": "t13d1812h1_85036bcba153_b26ce05bbdd6",
+      "ja4": "t13d1713h1_ab0a1bf427ad_8537cf56674e",
       "category": "library",
       "label": "python-requests 2.34.2",
       "verdict": "non-browser",
@@ -237,44 +236,44 @@
       }
     },
     {
-      "ja4": "t13d751100_479067518aa3_fb8d5ffd48c1",
+      "ja4": "t13d291300_723694b0fccc_74a6a6dea387",
       "category": "tool",
-      "label": "GNU Wget 1.21.2",
+      "label": "GNU Wget 1.25.0",
       "verdict": "non-browser",
       "source": "https://tls.peet.ws/api/all",
       "provenance": {
         "method": "measured",
         "tool": "wget",
-        "version": "1.21.2",
+        "version": "1.25.0",
         "date": "2026-10-31"
       }
     },
     {
-      "ja4": "t13d3113h1_e8f1e7e78f70_ce5650b735ce",
+      "ja4": "t13d3013h1_1d37bd780c83_8537cf56674e",
       "category": "tool",
-      "label": "curl (HTTP/1.1) 7.81.0",
+      "label": "curl (HTTP/1.1) 8.18.0",
       "verdict": "non-browser",
       "source": "https://tls.peet.ws/api/all",
       "provenance": {
         "method": "measured",
         "tool": "curl",
-        "version": "7.81.0",
+        "version": "8.18.0",
         "date": "2026-10-31"
       }
     },
     {
-      "ja4": "t13d3113h2_e8f1e7e78f70_ce5650b735ce",
+      "ja4": "t13d3013h2_1d37bd780c83_8537cf56674e",
       "category": "tool",
-      "label": "curl (HTTP/2 ALPN) 7.81.0",
+      "label": "curl (HTTP/2 ALPN) 8.18.0",
       "verdict": "non-browser",
       "source": "https://tls.peet.ws/api/all",
       "provenance": {
         "method": "measured",
         "tool": "curl",
-        "version": "7.81.0",
+        "version": "8.18.0",
         "date": "2026-10-31"
       },
-      "akamai_h2": "3:100;4:33554432;2:0|33488897|0|m,p,s,a"
+      "akamai_h2": "3:100;4:65536;2:0|1048510465|0|m,s,a,p"
     }
   ]
 }

@@ -1,0 +1,61 @@
+name: Weekly threat-feed refresh
+
+on:
+  schedule:
+    - cron: "37 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - uses: actions/setup-go@v5
+        with: { go-version: "1.22" }
+
+      - name: Install clients to measure
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install requests "httpx[http2]" aiohttp jsonschema
+
+      - name: Install measure deps
+        working-directory: measure
+        run: npm install
+
+      - name: Measure non-browser clients (real handshakes)
+        working-directory: measure
+        run: node measure.mjs
+
+      - name: Merge measured + cited browser allowlist into feed.json
+        run: python3 measure/merge.py
+
+      - name: Validate (schema + invariants) and loaders
+        run: |
+          python3 validate.py
+          python3 -c "import loader; assert loader.allow_ja4() and loader.deny_ja4()"
+          go test ./...
+
+      - name: Commit & push if feed.json changed
+        run: |
+          if git diff --quiet -- feed.json; then
+            echo "No feed changes this week — nothing to commit."
+            exit 0
+          fi
+          DATE=$(date -u +%Y-%m-%d)
+          git config user.name  "North-web-dev"
+          git config user.email "iskandarkhon1221@gmail.com"
+          git add feed.json
+          git commit -m "data: weekly threat-feed refresh (${DATE})"
+          git push

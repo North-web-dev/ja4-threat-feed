@@ -1,0 +1,17 @@
+Creative Commons Legal Code
+
+CC0 1.0 Universal
+
+The data in this repository — feed.json and schema.json — is dedicated to the
+public domain under the Creative Commons CC0 1.0 Universal Public Domain
+Dedication.
+
+To the extent possible under law, North-web-dev has waived all copyright and
+related or neighboring rights to the ja4-threat-feed dataset. You can copy,
+modify, distribute and use the data, even for commercial purposes, all without
+asking permission.
+
+Full legal text: https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+The code in this repository (loaders, validator, measurement harness) is
+licensed separately under the MIT License — see LICENSE.

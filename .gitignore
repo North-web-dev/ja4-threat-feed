@@ -1,0 +1,4 @@
+node_modules/
+measure/measured.json
+*.tmp
+.DS_Store

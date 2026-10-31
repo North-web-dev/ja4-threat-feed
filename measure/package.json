@@ -1,0 +1,9 @@
+{
+  "name": "ja4-threat-feed-measure",
+  "private": true,
+  "type": "module",
+  "description": "Measurement harness for ja4-threat-feed (no runtime deps).",
+  "scripts": {
+    "measure": "node measure.mjs"
+  }
+}

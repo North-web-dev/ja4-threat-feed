@@ -1,0 +1,19 @@
+name: CI
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install jsonschema
+      - run: python3 validate.py
+      - run: python3 -c "import loader; assert loader.allow_ja4() and loader.deny_ja4(); print('python loader OK')"
+      - uses: actions/setup-go@v5
+        with: { go-version: "1.22" }
+      - run: go build ./... && go test ./...

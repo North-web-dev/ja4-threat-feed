@@ -3,7 +3,7 @@
   "metadata": {
     "description": "JA4 client-identity threat feed: measured browser vs. automation-tool TLS fingerprints.",
     "reflector": "tls.peet.ws",
-    "updated": "2026-11-09",
+    "updated": "2026-11-16",
     "measured_count": 10,
     "cited_count": 8,
     "cadence": "weekly",
@@ -151,7 +151,7 @@
         "method": "measured",
         "tool": "go-net-http",
         "version": "go1.22.12",
-        "date": "2026-11-09"
+        "date": "2026-11-16"
       },
       "akamai_h2": "2:0;4:4194304;6:10485760|1073741824|0|a,m,p,s"
     },
@@ -165,7 +165,7 @@
         "method": "measured",
         "tool": "java-httpclient",
         "version": "25.0.5",
-        "date": "2026-11-09"
+        "date": "2026-11-16"
       },
       "akamai_h2": "1:16384;2:0;3:0;4:16777216;5:16384;6:393216|33488897|0|a,m,p,s"
     },
@@ -179,7 +179,7 @@
         "method": "measured",
         "tool": "node-undici",
         "version": "6.24.1",
-        "date": "2026-11-09"
+        "date": "2026-11-16"
       }
     },
     {
@@ -192,7 +192,7 @@
         "method": "measured",
         "tool": "python-urllib",
         "version": "3.11.18",
-        "date": "2026-11-09"
+        "date": "2026-11-16"
       }
     },
     {
@@ -205,7 +205,7 @@
         "method": "measured",
         "tool": "python-aiohttp",
         "version": "3.14.5",
-        "date": "2026-11-09"
+        "date": "2026-11-16"
       }
     },
     {
@@ -218,7 +218,7 @@
         "method": "measured",
         "tool": "python-httpx",
         "version": "0.28.1",
-        "date": "2026-11-09"
+        "date": "2026-11-16"
       },
       "akamai_h2": "1:4096;2:0;4:65535;5:16384;3:100;6:65536|16777216|0|m,a,s,p"
     },
@@ -232,7 +232,7 @@
         "method": "measured",
         "tool": "python-requests",
         "version": "2.34.2",
-        "date": "2026-11-09"
+        "date": "2026-11-16"
       }
     },
     {
@@ -245,7 +245,7 @@
         "method": "measured",
         "tool": "wget",
         "version": "1.25.0",
-        "date": "2026-11-09"
+        "date": "2026-11-16"
       }
     },
     {
@@ -258,7 +258,7 @@
         "method": "measured",
         "tool": "curl",
         "version": "8.18.0",
-        "date": "2026-11-09"
+        "date": "2026-11-16"
       }
     },
     {
@@ -271,7 +271,7 @@
         "method": "measured",
         "tool": "curl",
         "version": "8.18.0",
-        "date": "2026-11-09"
+        "date": "2026-11-16"
       },
       "akamai_h2": "3:100;4:65536;2:0|1048510465|0|m,s,a,p"
     }
